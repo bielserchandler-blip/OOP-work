@@ -1,0 +1,11 @@
+print("what is the name of the employee")
+a = input()
+
+print("what is the basic pay of the employee")
+b = int(input())
+
+print("what is the deductions of the employee")
+c = int(input())
+
+d = b - c
+print("the total pay of",a ,"is",d)
