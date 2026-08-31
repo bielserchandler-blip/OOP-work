@@ -1,0 +1,20 @@
+Name = input("Enter your name: ")
+
+Grade1 = int(input("Enter your first grade: "))
+Grade2 = int(input("Enter your second grade: "))
+Grade3 = int(input("Enter your third grade: "))
+
+TotalGrades = ((Grade1 + Grade2 + Grade3)/300)
+
+percentGrade = (TotalGrades*100)
+
+if 100 >= percentGrade >= 90:
+    print(Name, "got Grade A")
+elif 80 <= percentGrade < 90:
+    print(Name, "got Grade B")
+elif 70 <= percentGrade < 80:
+    print(Name, "got grade C")
+elif 60 <= percentGrade < 70:
+    print(Name, "got Grade D")
+else:
+    print(Name, "got Grade F")
