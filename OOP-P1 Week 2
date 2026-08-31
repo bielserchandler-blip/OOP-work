@@ -1,0 +1,23 @@
+#get 2 numbers and the operator
+print("enter first number")
+Number1 = int(input())
+
+print("enter the operator ex: +,-,*,/")
+Operator = input()
+
+print("enter second number")
+Number2 = int(input())
+
+if Operator == "+":
+    print("The answer is",Number1  + Number2)
+elif Operator == "-":
+    print("The answer is",Number1 - Number2)
+elif Operator == "*":
+    print("The answer is",Number1 * Number2)
+elif Operator == "/":
+    if Number2 == 0:
+        print("can't divide by zero please try again")
+    else:
+        print("The answer is",Number1 / Number2)
+else:
+    print("incorrect input please try again")
