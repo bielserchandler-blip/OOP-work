@@ -1,0 +1,5 @@
+Age = 60
+
+while Age >= 18:
+    print("You are old enough.")
+    Age = Age - Age
