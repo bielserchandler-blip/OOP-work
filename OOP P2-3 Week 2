@@ -1,0 +1,25 @@
+while True:
+    Number1 = int(input("enter first number"))
+    Number2 = int(input("enter second number"))
+    print("select 1 for addition")
+    print("select 2 for subtraction")
+    print("select 3 for multiplication")
+    print("select 4 for division")
+    print("select 5 to exit")
+    print("select 6 to restart")
+    choice =  int(input("enter your choice"))
+    if choice == 1:
+        print(Number1 + Number2)
+    if choice == 2:
+        print(Number1 - Number2)
+    if choice == 3:
+        print(Number1 * Number2)
+    if choice == 4:
+        if Number2 == 0:
+           print ("cannot divide by zero please enter another number")
+        else:
+            print(Number1 / Number2)
+    if choice == 5:
+        break
+    if choice == 6:
+        continue
