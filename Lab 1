@@ -1,0 +1,25 @@
+# Lab on 9/4
+while True:
+    print("1. Area of a rectangle")
+    print("2. Volume of a cube")
+    print("3. Area of a Circle")
+    print("4. circumference of a circle")
+    print("5. exit the program")
+    choice = input("please choose a number from the options above")
+    if choice == "1":
+        r_length = int(input("enter the length of the rectangle"))
+        r_width = int(input("enter the width of the rectangle"))
+        print("the area of the rectangle is", r_length*r_width)
+    elif choice == "2":
+        c_volume = int(input("enter the length of the cube"))
+        c_width = int(input("enter the width of the cube"))
+        c_height = int(input("enter the height of the cube"))
+        print("the volume of the cube is", c_volume*c_width*c_height)
+    elif choice == "3":
+        c_radius = int(input("enter the radius of the circle"))
+        print("the area of the circle is", 3.14*c_radius*c_radius)
+    elif choice == "4":
+        c_radius = int(input("enter the radius of the circle"))
+        print("the circumference of the circle is", 2*3.14*c_radius)
+    elif choice == "5":
+        break
