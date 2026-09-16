@@ -13,3 +13,8 @@ print(mydictionary)
 
 mydictionary["name4"] = "amaury"  #replace
 print(mydictionary)
+
+Fullname = input("Please enter your full name: ")
+
+mydictionary.update({"name6":Fullname}) # gets input from user and adds it to the list
+print(mydictionary)
