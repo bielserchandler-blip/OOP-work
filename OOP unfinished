@@ -1,0 +1,13 @@
+mycourses = {}
+while True:
+    print("1. add new course")
+    print("2.remove course")
+    print("3. replace course")
+    print("4. print courses")
+    print("5. exit program")
+
+    choice = int(input("Enter your choice: "))
+    if choice == 1:
+        mycourses.update({(): input("Enter course mame: ")})
+    if choice == 2:
+        
