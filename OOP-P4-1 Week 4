@@ -1,0 +1,15 @@
+mydictionary = {"name1":"chandler",
+                "name2":"jose",
+                "name3":"jason"} #original dict can be empty if nessacary
+
+print(mydictionary)
+
+mydictionary.update({"name4":"omar"}) #add
+mydictionary.update({"name5":"kayden"}) #add
+print(mydictionary)
+
+del mydictionary["name3"] #delete
+print(mydictionary)
+
+mydictionary["name4"] = "amaury"  #replace
+print(mydictionary)
