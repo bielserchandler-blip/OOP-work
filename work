@@ -1,0 +1,7 @@
+student = {}
+while True:
+    print("1. add studnet")
+    print("2.delete student")
+    print("3.edit students")
+    print("4.print students")
+    print("5.exit")
