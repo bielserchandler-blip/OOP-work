@@ -1,0 +1,23 @@
+myQueue = []
+
+def enqueue():
+    myQueue.append(input("enter the element you want to and to the queue"))
+def dequeue():
+    myQueue.pop(int(input("enter the element you want to remove from queue:")))
+def display_queue():
+    print(myQueue)
+
+while True:
+    print("1.add to queue")
+    print("2.remove from queue")
+    print("3.display queue")
+    print("4.break")
+    choice = input("enter your choice")
+    if choice == "1":
+        enqueue()
+    if choice == "2":
+        dequeue()
+    if choice == "3":
+        display_queue()
+    if choice == "4":
+        break
