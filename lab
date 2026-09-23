@@ -1,0 +1,18 @@
+# name , lab 1-5, total, percent, average
+mystudents = {}
+i=1
+def add_student():
+    stud_name = input("Enter your name: ")
+    lab_1 = input("enter your grade for lab 1")
+    lab_2 = input("enter your grade for lab 2")
+    lab_3 = input("enter your grade for lab 3")
+    lab_4 = input("enter your grade for lab 4")
+    lab_5 = input("enter your grade for lab 5")
+    total = lab_1 + lab_2 + lab_3 + lab_4 + lab_5
+    percent = (total/50) * 100
+    average = (total)/5
+    (mystudents.update({("student",+str(i)) : stud_name}), 
+                            {"lab 1":lab_1},
+                            {"lab 2":lab_2},
+                            {"lab_3":lab_3},
+                            {"lab_4":lab_4},)
