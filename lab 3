@@ -1,0 +1,36 @@
+class student:
+    def __init__(self):
+        self.name = {}
+        self.id = {}
+        self.department = {}
+    def create_student(self):
+        N = input("how many students whould you like to add: ")
+        for stud in range(int(N)):
+             self.name = input("enter student name:")
+             self.id = input("enter student id:")
+             self.department = input("enter student department:")
+
+class facualty :
+    def __init__(self):
+        self.faculty = {}
+    def create_facualty(self):
+        N = input("enter the number of facualty you want to add: ")
+        for fact in range(int(N)):
+            self.faculty = (input("enter facualty name:"),
+                            input("enter faculty id:"),
+                            input("enter faculty department:"))
+class courses :
+    def __init__(self):
+        self.courses = {}
+    def create_courses(self):
+        N = input("enter number of courses:")
+        for cours in range(int(N)):
+            self.courses = input("enter course number:")
+
+stu = student()
+fac = facualty()
+course = courses()
+stu.create_student()
+fac.create_facualty()
+course.create_courses()
+print(fac.faculty)
