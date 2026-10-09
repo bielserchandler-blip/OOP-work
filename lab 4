@@ -1,0 +1,71 @@
+class books:
+    def __init__(self):
+        self.id = input("enter book id:")
+        self.title = input("enter book title:")
+        self.auther = input("enter book author:")
+        self.publisher = input("enter book publisher:")
+        self.year = input("enter book year of publication:")
+    def create_new_book(self):
+        self.id = input("enter book id:")
+        self.title = input("enter book title:")
+        self.auther = input("enter book author:")
+        self.publisher = input("enter book publisher:")
+        self.year = input("enter book year of publication:")
+class author:
+    def __init__(self):
+        self.id = input("enter author id:")
+        self.name = input("enter author name:")
+        self.affiliation = input("enter author affiliation:")
+        self.country = input("enter author country:")
+        self.phone = input("enter author phone:")
+        self.email = input("enter author email:")
+    def create_new_author(self):
+        self.id = input("enter author id:")
+        self.name = input("enter author name:")
+        self.affiliation = input("enter author affiliation:")
+        self.country = input("enter author country:")
+        self.phone = input("enter author phone:")
+        self.email = input("enter author email:")
+class user:
+    def __init__(self):
+        self.id = input("enter user id:")
+        self.name = input("enter user name:")
+        self.password = input("enter user password:")
+        self.address = input("enter user address:")
+        self.phone = input("enter user phone:")
+        self.email = input("enter user email:")
+        self.booksborrowed = input("enter the books the user has borrowed ex) Where The Red Fern Grows, A Thousand Splendid Suns")
+    def create_new_user(self):
+        self.id = input("enter user id:")
+        self.name = input("enter user name:")
+        self.password = input("enter user password:")
+        self.address = input("enter user address:")
+        self.phone = input("enter user phone:")
+        self.email = input("enter user email:")
+        self.booksborrowed = input("enter the books the user has borrowed ex) Where The Red Fern Grows, A Thousand Splendid Suns")
+book = books()
+auth = author()
+us = user()
+while True:
+    print("1.Add a book")
+    print("2.Add a author")
+    print("3.Add a user")
+    print("4.print books")
+    print("5.print authors")
+    print("6. print users")
+    print("7.Exit")
+    choice = input("enter choice:")
+    if choice == "1":
+        book.create_new_book()
+    if choice == "2":
+        auth.create_new_author()
+    if choice == "3":
+        us.create_new_user()
+    if choice == "4":
+        print("books")
+    if choice == "5":
+        print("authors")
+    if choice == "6":
+        print("users")
+    if choice == "7":
+        break
