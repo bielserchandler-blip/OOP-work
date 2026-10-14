@@ -1,0 +1,111 @@
+import pickle
+class Books:
+    def __init__(self):
+        self.id = ()
+        self.title = ()
+        self.auther = ()
+        self.publisher = ()
+        self.year = ()
+    def create_new_book(self):
+        self.id = input("enter book id:")
+        self.title = input("enter book title:")
+        self.auther = input("enter book author:")
+        self.publisher = input("enter book publisher:")
+        self.year = input("enter book year of publication:")
+    def display_books(self):
+        print(self.id,self.title,self.auther,self.publisher,self.year)
+class Author:
+    def __init__(self):
+        self.id = ()
+        self.name = ()
+        self.affiliation = ()
+        self.country = ()
+        self.phone = ()
+        self.email = ()
+    def create_new_author(self):
+        self.id = input("enter author id:")
+        self.name = input("enter author name:")
+        self.affiliation = input("enter author affiliation:")
+        self.country = input("enter author country:")
+        self.phone = input("enter author phone:")
+        self.email = input("enter author email:")
+    def  display_author(self):
+        print(self.id,self.name,self.affiliation,self.country,self.phone,self.email)
+class User:
+    def __init__(self):
+        self.id = ()
+        self.name = ()
+        self.password = ()
+        self.address = ()
+        self.phone = ()
+        self.email = ()
+        self.booksborrowed = ()
+    def create_new_user(self):
+        self.id = input("enter user id:")
+        self.name = input("enter user name:")
+        self.password = input("enter user password:")
+        self.address = input("enter user address:")
+        self.phone = input("enter user phone:")
+        self.email = input("enter user email:")
+        self.booksborrowed = input("enter the books the user has borrowed ex) Where The Red Fern Grows, A Thousand Splendid Suns")
+    def display_user(self):
+        print(self.id,self.name,self.password,self.address,self.phone,self.email)
+
+while True:
+    print("1.Add a book")
+    print("2.Add a author")
+    print("3.Add a user")
+    print("4.print books")
+    print("5.print authors")
+    print("6. print users")
+    print("7.Exit")
+    choice = input("enter choice:")
+    if choice == "1":
+        book = Books()
+        book.create_new_book()
+        file1 = open("mybooks.dat", "ab")
+        pickle.dump(book,file1)
+        file1.close()
+    if choice == "2":
+        auth = Author()
+        auth.create_new_author()
+        file1 = open("myauthors.dat", "ab")
+        pickle.dump(auth,file1)
+        file1.close()
+    if choice == "3":
+        us = User()
+        us.create_new_user()
+        file1 = open("myusers.dat", "ab")
+        pickle.dump(us,file1)
+        file1.close()
+    if choice == "4":
+        file2 = open("mybooks.dat", "rb")
+        while (1):
+            try:
+                data = pickle.load(file2)
+                print(data.id,data.title,data.auther,data.publisher,data.year)
+            except EOFError:
+                break
+        file2.close()
+    if choice == "5":
+        file2 = open("mybooks.dat", "rb")
+        while (1):
+            try:
+                data = pickle.load(file2)
+                print(data.id,data.name,data.affiliation,data.country,data.phone,data.email)
+
+            except EOFError:
+                break
+        file2.close()
+    if choice == "6":
+        file2 = open("mybooks.dat", "rb")
+        while (1):
+            try:
+                data = pickle.load(file2)
+                print(data.id,data.name,data.password,data.address,data.phone,data.email)
+
+            except EOFError:
+                break
+        file2.close()
+    if choice == "7":
+        break
