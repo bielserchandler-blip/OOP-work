@@ -1,0 +1,91 @@
+import pickle
+
+class Manager:
+    def __init__(self):
+        self.id = ""
+        self.title = ""
+        self.name = ""
+        self.workers = ""
+        self.company = ""
+        self.phone = ""
+        self.email = ""
+        self.adress = ""
+        self
+    def create_new_manager(self):
+        self.id = input("enter Your manager id:")
+        self.title = input("enter your work title:")
+        self.name = input("enter your name:")
+        self.workers = input("enter the workers under you:")
+        self.company = input("enter the Company name:")
+        self.phone = input("enter your phone:")
+        self.email = input("enter your email:")
+        self.adress = input("enter your adress:")
+    def display_manager(self):
+        print(self.id,self.title,self.name,self.workers,self.company, self.phone,self.email,self.adress)
+
+class Employee:
+    def __init__(self):
+        self.id = ""
+        self.name = ""
+        self.company = ""
+        self.manager = ""
+        self.phone = ""
+        self.email = ""
+        self.pay = ""
+        self.adress = ""
+    def create_new_author(self):
+        self.id = input("enter Employee id:")
+        self.name = input("enter your name:")
+        self.company = input("enter the Company name:")
+        self.manager = input("enter your Manager name:")
+        self.phone = input("enter your phone:")
+        self.email = input("enter your email:")
+        self.pay = input("enter your pay:")
+        self.adress = input("enter your adress:")
+    def  display_author(self):
+        print(self.id,self.name,self.company,self.manager,self.phone,self.email,self.pay,self.adress)
+        
+class Company:
+    def __init__(self):
+        self.id = ""
+        self.name = ""
+        self.CEO = ""
+        self.email = ""
+        self.phone = ""
+        self.address = ""
+    def create_new_user(self):
+        self.id = input("enter company id:")
+        self.name = input("enter company name:")
+        self.address = input("enter company address:")
+        self.phone = input("enter company phone:")
+        self.email = input("enter company email:")
+        self.CEO = input("enter company CEO:")
+    def display_user(self):
+        print(self.id,self.name,self.address,self.CEO,self.phone,self.email)
+
+while True:
+    print("1.add new manager")
+    print("2.add new employee")
+    print("3.add new company")
+    print("4.display manager")
+    print("5.display employee")
+    print("6.display company")
+    print("7.remove employee")
+    print("8.remove manager")
+    print("9.remove company")
+    print("10.exit application")
+    choice = input("enter choice:")
+    if choice == "1":
+       
+    if choice == "2":
+        
+    if choice == "3":
+        
+    if choice == "4":
+        
+    if choice == "5":
+        
+    if choice == "6":
+
+    if choice == "7":
+        break
