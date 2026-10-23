@@ -1,0 +1,62 @@
+import pickle
+
+class Customer:
+    def __init__(self):
+        self.cid = ""
+        self.cname = ""
+        self.acc_no = ""
+        self.balance = ""
+        self.cain = {}
+    def create_customer(self):
+        self.cid = input("enter customer id number: ")
+        self.cname = input("enter customer name: ")
+        self.acc_no = input("enter customer account number: ")
+        self.balance = input("enter customer balance: ")
+        self.cain.append = {self.cid:self.balance}
+class Card:
+    def __init__(self):
+        self.card_no = ""
+        self.cvv = ""
+        self.expiry_date = ""
+        self.balance = ""
+    def create_credit_card(self):
+        self.card_no = input("enter credit card number ")
+        self.cvv = input("enter credit card CVV ")
+        self.expiry_date = input("enter credit card expiry date ")
+        self.balance = input("enter credit card balance ")
+
+cust = Customer()
+card = Card()
+
+while True:
+    print("1. Create Customer")
+    print("2. Create Credit Card")
+    print("3. Display Customer")
+    print("4. Display Credit Card")
+    print("5. transfer funds")
+    print("6. Exit")
+    choice = int(input("enter your choice:"))
+    if choice == 1:
+        cust.create_customer()
+        file1 = open("customer.pkl", "ab")
+        pickle.dump(cust, file1)
+        file1.close()
+    if choice == 2:
+        card.create_credit_card()
+        file1 = open("credit_card.pkl", "ab")
+        pickle.dump(card, file1)
+        file1.close()
+    if choice == 3:
+        file2 = open("customer.pkl", "r")
+        for line in file2:
+            print(line)
+        file2.close()
+    if choice == 4:
+        file2 = open("credit_card.pkl", "r")
+        for line in file2:
+            print(line)
+        file2.close()
+    if choice == 5:
+        file1 = open("customer.pkl", "rb")
+    if choice == 6:
+        break
