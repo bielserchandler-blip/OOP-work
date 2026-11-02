@@ -1,0 +1,113 @@
+import pickle
+
+from altair.vegalite.v6 import display
+
+Workers = []
+class Manager:
+    def __init__(self):
+        self.id = ""
+        self.name = ""
+        self.company = ""
+        self.workers = []
+        self.phone = ""
+        self.email = ""
+        self.adress = ""
+    def create_new_manager(self):
+        self.id = input("enter Your manager id:")
+        self.name = input("enter your name:")
+        self.company = input("enter the Company name:")
+        self.phone = input("enter your phone:")
+        self.email = input("enter your email:")
+        self.adress = input("enter your adress:")
+    def display_manager(self):
+        print(self.id,self.name,self.workers,self.company, self.phone,self.email,self.adress)
+    def pay_raise(self):
+
+
+class Employee:
+    def __init__(self):
+        self.id = ""
+        self.name = ""
+        self.company = ""
+        self.manager = ""
+        self.phone = ""
+        self.email = ""
+        self.pay = ""
+        self.adress = ""
+    def create_new_employee(self):
+        self.id = input("enter Employee id:")
+        self.name = input("enter your name:")
+        self.company = input("enter the Company name:")
+        self.manager = input("enter your Manager name:")
+        self.phone = input("enter your phone:")
+        self.email = input("enter your email:")
+        self.pay = input("enter your pay:")
+        self.adress = input("enter your adress:")
+    def  display_employee(self):
+        print(self.id,self.name,self.company,self.manager,self.phone,self.email,self.pay,self.adress)
+
+class Company:
+    def __init__(self):
+        self.id = ""
+        self.name = ""
+        self.CEO = ""
+        self.email = ""
+        self.phone = ""
+        self.address = ""
+    def create_new_company(self):
+        self.id = input("enter company id:")
+        self.name = input("enter company name:")
+        self.address = input("enter company address:")
+        self.phone = input("enter company phone:")
+        self.email = input("enter company email:")
+        self.CEO = input("enter company CEO:")
+    def display_company(self):
+        print(self.id,self.name,self.address,self.CEO,self.phone,self.email)
+man = Manager()
+emp = Employee()
+comp = Company()
+while True:
+    print("1.add new manager")
+    print("2.add new employee")
+    print("3.add new company")
+    print("4.assign Employee to manager")
+    print("5.assign Manager to Comapny")
+    print("6.display manager")
+    print("7.display employee")
+    print("8.display company")
+    print("9.remove employee")
+    print("10.remove manager")
+    print("11.remove company")
+    print("12.raise employee salary")
+    print("13.exit application")
+    choice = input("enter choice:")
+    if choice == "1":
+        man.create_new_manager()
+        file1 = open("manager.pickle","ab")
+        pickle.dump(man,file1)
+        file1.close()
+    if choice == "2":
+        emp.create_new_employee()
+        file1 = open("employee.pickle","ab")
+        pickle.dump(emp,file1)
+        file1.close()
+    if choice == "3":
+        comp.create_new_company()
+        file1 = open("company.pickle","ab")
+        pickle.dump(comp,file1)
+        file1.close()
+    if choice == "6":
+        file2 = open("manager.pickle","rb")
+        for line in file2:
+            print(line)
+        file2.close()
+    if choice == "7":
+        file2 = open("employee.pickle","rb")
+        data = pickle.load(file2)
+        print(data)
+        file2.close()
+    if choice == "8":
+        file2 = open("company.pickle","rb")
+        data = pickle.load(file2)
+        print(data)
+        file2.close()
