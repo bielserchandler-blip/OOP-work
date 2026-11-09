@@ -1,0 +1,92 @@
+import pickle
+class Faculty_Master:
+    """
+    This defines Faculty Master class
+    """
+    def __init__(self):
+        self.fac_id = ""
+        self.fac_name = ""
+        self.fac_department = ""
+        self.fac_courses = ""
+        self.fac_collage = ""
+    def Create_Faculty_Master(self):
+        """
+This creates Faculaty Master class
+        """
+        self.fac_id = input("Enter Faculty ID: ")
+        self.fac_name = input("Enter Facualty Name: ")
+        self.fac_department = input("Enter Faculty Department: ")
+        self.fac_courses = input("Enter Faculty Course(s): ")
+        self.fac_collage = input("Enter Faculty Collage: ")
+class Student_Master:
+    """
+    this Defines Student Master class
+    """
+    def __init__(self):
+        self.stu_id = ""
+        self.stu_name = ""
+        self.stu_major = ""
+        self.stu_courses = ""
+        self.coll_gpa = ""
+    def Create_Student_Master(self):
+        """
+        This creates Student Master class
+        """
+        self.stu_id = input("Enter Student ID: ")
+        self.stu_name = input("Enter Student Name: ")
+        self.stu_major = input("Enter Student Major: ")
+        self.stu_courses = input("Enter Student Courses: ")
+        self.coll_gpa = input("Enter Student Collage GPA: ")
+
+fac = Faculty_Master()
+stu = Student_Master()
+
+while True:
+    print("1. Create Faculty_Master ")
+    print("2. Create Student_Master ")
+    print("3. Read Faculty_Master ")
+    print("4. Read Student_Master ")
+    print("5. Stop Code ")
+    choice = int(input("Enter your choice: "))
+    if choice == 1:
+        file1 = open("L/Facualty_Master","ab")
+        fac.Create_Faculty_Master()
+        pickle.dump(fac,file1)
+        file1.close()
+    elif choice == 2:
+        file1 = open("L/Student_Master","ab")
+        stu.Create_Student_Master()
+        pickle.dump(stu,file1)
+        file1.close()
+    elif choice == 3:
+        file2 = open("L/Faculty_Master","rb")
+        while 1:
+            try:
+                data = pickle.load(file2)
+                print(fac.fac_id)
+                print(fac.fac_name)
+                print(fac.fac_department)
+                print(fac.fac_courses)
+                print(fac.fac_collage)
+
+            except EOFError:
+                break
+        file2.close()
+    elif choice == 4:
+        file2 = open("L/Student_Master", "rb")
+        while 1:
+            try:
+                data = pickle.load(file2)
+                print(stu.stu_id)
+                print(stu.stu_name)
+                print(stu.stu_major)
+                print(stu.stu_courses)
+                print(stu.coll_gpa)
+
+            except EOFError:
+                break
+        file2.close()
+    elif choice == 5:
+        break
+    else:
+        print("Please enter a valid choice")
