@@ -1,0 +1,78 @@
+import tkinter
+
+root = tkinter.Tk()
+root.resizable(False, False)
+
+WIDTH = 800
+HEIGHT = 600
+
+myCanvas = tkinter.Canvas(root, bg="white", height=HEIGHT, width=WIDTH)
+myCanvas.pack()
+
+text1 = myCanvas.create_text(
+    100, 100,
+    text="Hello",
+    fill="blue",
+    font=("Arial", 40)
+)
+
+text2 = myCanvas.create_text(
+    300, 300,
+    text="World",
+    fill="red",
+    font=("Arial", 40)
+)
+
+xx1 = 3
+yy1 = 3
+xx2 = 5
+yy2 = 5
+
+def touching(box1, box2):
+    x1, y1, x2, y2 = box1
+    a1, b1, a2, b2 = box2
+
+    return not (x2 < a1 or x1 > a2 or y2 < b1 or y1 > b2)
+
+def move_text():
+    global xx1, yy1, xx2, yy2
+
+    # move both text objects
+    myCanvas.move(text1, xx1, yy1)
+    myCanvas.move(text2, xx2, yy2)
+
+    # get bounding boxes
+    box1 = myCanvas.bbox(text1)
+    box2 = myCanvas.bbox(text2)
+
+    x1, y1, x2, y2 = box1
+    a1, b1, a2, b2 = box2
+
+    # bounce off walls for text1
+    if x1 <= 0 or x2 >= WIDTH:
+        xx1 = -xx1
+    if y1 <= 0 or y2 >= HEIGHT:
+        yy1 = -yy1
+
+    # bounce off walls for text2
+    if a1 <= 0 or a2 >= WIDTH:
+        xx2 = -xx2
+    if b1 <= 0 or b2 >= HEIGHT:
+        yy2 = -yy2
+
+    # bounce off each other
+    if not (x2 < a1 or x1 > a2 or y2 < b1 or y1 > b2):
+        xx1 = -xx1
+        yy1 = -yy1
+        xx2 = -xx2
+        yy2 = -yy2
+
+        # move them slightly apart so they don't get stuck
+        myCanvas.move(text1, xx1, yy1)
+        myCanvas.move(text2, xx2, yy2)
+
+    myCanvas.after(30, move_text)
+
+myCanvas.after(10, move_text)
+
+root.mainloop()
