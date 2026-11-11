@@ -1,0 +1,14 @@
+import  streamlit as st
+# create my resume
+
+st.title("Chandler Bielser")
+st.header("Stu., Cyber Security")
+
+st.markdown("about me")
+st.text("I am studying OOP in the Fall of 2026")
+st.divider()
+
+st.markdown("Qualifications")
+st.text("High School graduate")
+st.text("John Brown University student")
+st.divider()
