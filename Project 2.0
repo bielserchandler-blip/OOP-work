@@ -1,0 +1,227 @@
+import pickle
+
+class Employee:
+    """
+    This is the employee class
+    """
+    def __init__(self):
+        self.id = ""
+        self.name = ""
+        self.position = ""
+        self.manager = ""   # the manager's ID
+        self.phone = ""
+        self.email = ""
+        self.salary = 0.0
+
+    def add_emp(self):
+        """
+        This adds A employee
+        """
+        self.id = input("Enter employee ID: ")
+        self.name = input("Enter employee name: ")
+        self.position = input("Enter employee position: ")
+        self.manager = input("Enter employee manager ID: ")
+        self.phone = input("Enter employee phone: ")
+        self.email = input("Enter employee email: ")
+        self.salary = float(input("Enter employee salary: "))
+
+    def display_emp(self):
+        """
+        This displays employees
+        """
+        print("Employee ID: " + self.id)
+        print("Employee Name: " + self.name)
+        print("Employee Position: " + self.position)
+        print("Employee Manager: " + self.manager)
+        print("Employee Phone: " + self.phone)
+        print("Employee Email: " + self.email)
+        print("Employee Salary: " + str(self.salary))
+
+
+def promote_emp(emp, new_position):
+    """
+
+    :param emp:
+    :param new_position:
+    """
+    emp.position = new_position
+
+
+def give_raise(emp, percent):
+    emp.salary = emp.salary + emp.salary * percent / 100
+
+
+class Manager:
+    """
+    This is the manager class
+    """
+    def __init__(self):
+        self.id = ""
+        self.name = ""
+        self.phone = ""
+        self.email = ""
+        self.address = ""
+
+    def add_manager(self):
+        """
+        This adds A manager
+        """
+        self.id = input("Enter manager ID: ")
+        self.name = input("Enter manager name: ")
+        self.phone = input("Enter manager phone: ")
+        self.email = input("Enter manager email: ")
+        self.address = input("Enter manager address: ")
+
+    def display_manager(self):
+        """
+        This displays managers
+        """
+        print("Manager ID: " + self.id)
+        print("Manager Name: " + self.name)
+        print("Manager Phone: " + self.phone)
+        print("Manager Email: " + self.email)
+        print("Manager Address: " + self.address)
+    def promote_emp(self, emp, new_position):
+        """
+        hgg
+        """
+        emp.position = new_position
+
+    def give_raise(self, emp, percent):
+        """
+        this is the raise
+        """
+        emp.salary = emp.salary + emp.salary * percent / 100
+
+
+class Company:
+    def __init__(self):
+        self.id = ""
+        self.name = ""
+        self.CEO = ""
+        self.email = ""
+        self.phone = ""
+        self.address = ""
+
+    def add_company(self):
+        """
+        ththt
+        """
+        self.id = input("Enter company ID: ")
+        self.name = input("Enter company name: ")
+        self.CEO = input("Enter company CEO: ")
+        self.email = input("Enter company email: ")
+        self.phone = input("Enter company phone: ")
+        self.address = input("Enter company address: ")
+
+    def display_company(self):
+        """
+        thrthth
+        """
+        print("Company ID: " + self.id)
+        print("Company Name: " + self.name)
+        print("CEO: " + self.CEO)
+        print("Company Email: " + self.email)
+        print("Company Phone: " + self.phone)
+        print("Company Address: " + self.address)
+
+def load(filename):
+    """
+    djfhfj
+    """
+    try:
+        file = open(filename, "rb")
+        data = pickle.load(file)
+        file.close()
+        return data
+    except FileNotFoundError:
+        return []
+
+def save(filename, data):
+    """
+    threh
+    """
+    file = open(filename, "wb")
+    pickle.dump(data, file)
+    file.close()
+
+def find(items, item_id):
+    """
+    thtnj
+    """
+    for item in items:
+        if item.id == item_id:
+            return item
+    return None
+
+while True:
+    print()
+    print("1.Add Manager")
+    print("2.Add Employee")
+    print("3.Add Company")
+    print("4.Display Employees of Manager")
+    print("5.Promote Employee")
+    print("6.Pay Raise for Employee")
+    print("0.Exit")
+    choice = input("Enter choice: ")
+
+    if choice == "1":
+        m = Manager()
+        m.add_manager()
+        managers = load("manager.dat")
+        managers.append(m)
+        save("manager.dat", managers)
+
+    elif choice == "2":
+        e = Employee()
+        e.add_emp()
+        employees = load("employee.dat")
+        employees.append(e)
+        save("employee.dat", employees)
+
+    elif choice == "3":
+        c = Company()
+        c.add_company()
+        companies = load("company.dat")
+        companies.append(c)
+        save("company.dat", companies)
+
+    elif choice == "4":
+        manager_id = input("Enter manager ID: ")
+        employees = load("employee.dat")
+        for e in employees:
+            if e.manager == manager_id:
+                e.display_emp()
+                print()
+
+    elif choice == "5":
+        managers = load("manager.dat")
+        employees = load("employee.dat")
+        m = find(managers, input("Enter manager ID: "))
+        e = find(employees, input("Enter employee ID: "))
+        if m and e:
+            m.promote_emp(e, input("Enter new position: "))
+            save("employee.dat", employees)
+            print("Employee promoted.")
+        else:
+            print("Manager or employee not found.")
+
+    elif choice == "6":
+        managers = load("manager.dat")
+        employees = load("employee.dat")
+        m = find(managers, input("Enter manager ID: "))
+        e = find(employees, input("Enter employee ID: "))
+        if m and e:
+            percent = float(input("Enter raise percent (example: 10): "))
+            m.give_raise(e, percent)
+            save("employee.dat", employees)
+            print("New salary: " + str(e.salary))
+        else:
+            print("Manager or employee not found.")
+
+    elif choice == "0":
+        print("Goodbye!")
+        break
+
+    else:
+        print("Invalid input")
