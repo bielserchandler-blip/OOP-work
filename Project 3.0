@@ -1,0 +1,218 @@
+import pickle
+from datetime import date, datetime
+
+class Employee:
+    def __init__(self):
+        self.id = ""
+        self.name = ""
+        self.position = ""
+        self.manager = ""
+        self.phone = ""
+        self.email = ""
+        self.salary = 0.0
+        self.hire_date = ""   # stored as YYYY-MM-DD
+
+    def add_emp(self):
+        self.id = input("Enter employee ID: ")
+        self.name = input("Enter employee name: ")
+        self.position = input("Enter employee position: ")
+        self.manager = input("Enter employee manager ID: ")
+        self.phone = input("Enter employee phone: ")
+        self.email = input("Enter employee email: ")
+        self.salary = float(input("Enter employee salary: "))
+        while True:
+            text = input("Enter hire date (YYYY-MM-DD): ")
+            try:
+                datetime.strptime(text, "%Y-%m-%d")
+                self.hire_date = text
+                break
+            except ValueError:
+                print("Invalid date, please use YYYY-MM-DD.")
+
+    def display_emp(self):
+        print("Employee ID: " + self.id)
+        print("Employee Name: " + self.name)
+        print("Employee Position: " + self.position)
+        print("Employee Manager: " + self.manager)
+        print("Employee Phone: " + self.phone)
+        print("Employee Email: " + self.email)
+        print("Employee Salary: " + str(self.salary))
+        print("Employee Hire Date: " + getattr(self, "hire_date", "") )
+
+
+class Manager:
+    def __init__(self):
+        self.id = ""
+        self.name = ""
+        self.phone = ""
+        self.email = ""
+        self.address = ""
+
+    def add_manager(self):
+        self.id = input("Enter manager ID: ")
+        self.name = input("Enter manager name: ")
+        self.phone = input("Enter manager phone: ")
+        self.email = input("Enter manager email: ")
+        self.address = input("Enter manager address: ")
+
+    def display_manager(self):
+        print("Manager ID: " + self.id)
+        print("Manager Name: " + self.name)
+        print("Manager Phone: " + self.phone)
+        print("Manager Email: " + self.email)
+        print("Manager Address: " + self.address)
+
+    def promote_emp(self, emp, new_position):
+        emp.position = new_position
+
+    def give_raise(self, emp, percent):
+        emp.salary = emp.salary + emp.salary * percent / 100
+
+    def months_worked(self, emp):
+        hire_text = getattr(emp, "hire_date", "")
+        if hire_text == "":
+            return None
+        hired = datetime.strptime(hire_text, "%Y-%m-%d").date()
+        today = date.today()
+        months = (today.year - hired.year) * 12 + (today.month - hired.month)
+        if today.day < hired.day:
+            months = months - 1
+        return months
+
+    def check_eligibility(self, emp):
+        months = self.months_worked(emp)
+        if months is None:
+            print("No hire date on file for this employee.")
+        elif months >= 6:
+            print(emp.name + " has worked " + str(months) + " months. ELIGIBLE for promotion.")
+        else:
+            print(emp.name + " has worked " + str(months) + " months. NOT eligible (needs 6 months).")
+
+
+class Company:
+    def __init__(self):
+        self.number = ""
+        self.name = ""
+        self.CEO = ""
+        self.email = ""
+        self.phone = ""
+        self.address = ""
+
+    def add_company(self):
+        self.number = input("Enter company number: ")
+        self.name = input("Enter company name: ")
+        self.CEO = input("Enter company CEO: ")
+        self.email = input("Enter company email: ")
+        self.phone = input("Enter company phone: ")
+        self.address = input("Enter company address: ")
+
+    def display_company(self):
+        print("Company ID: " + self.number)
+        print("Company Name: " + self.name)
+        print("CEO: " + self.CEO)
+        print("Company Email: " + self.email)
+        print("Company Phone: " + self.phone)
+        print("Company Address: " + self.address)
+
+def load(filename):
+    try:
+        file = open(filename, "rb")
+        data = pickle.load(file)
+        file.close()
+        return data
+    except FileNotFoundError:
+        return []
+
+
+def save(filename, data):
+    file = open(filename, "wb")
+    pickle.dump(data, file)
+    file.close()
+
+def find(items, item_id):
+    for item in items:
+        if item.id == item_id:
+            return item
+    return None
+
+while True:
+    print("1.Add Manager")
+    print("2.Add Employee")
+    print("3.Add Company")
+    print("4.Display Employees of Manager")
+    print("5.Promote Employee")
+    print("6.Pay Raise for Employee")
+    print("7.Check Promotion Eligibility (6 months)")
+    print("0.Exit")
+    choice = input("Enter choice: ")
+
+    if choice == "1":
+        m = Manager()
+        m.add_manager()
+        managers = load("manager.dat")
+        managers.append(m)
+        save("manager.dat", managers)
+
+    elif choice == "2":
+        e = Employee()
+        e.add_emp()
+        employees = load("employee.dat")
+        employees.append(e)
+        save("employee.dat", employees)
+
+    elif choice == "3":
+        c = Company()
+        c.add_company()
+        companies = load("company.dat")
+        companies.append(c)
+        save("company.dat", companies)
+
+    elif choice == "4":
+        manager_id = input("Enter manager ID: ")
+        employees = load("employee.dat")
+        for e in employees:
+            if e.manager == manager_id:
+                e.display_emp()
+                print()
+
+    elif choice == "5":
+        managers = load("manager.dat")
+        employees = load("employee.dat")
+        m = find(managers, input("Enter manager ID: "))
+        e = find(employees, input("Enter employee ID: "))
+        if m and e:
+            m.promote_emp(e, input("Enter new position: "))
+            save("employee.dat", employees)
+            print("Employee promoted.")
+        else:
+            print("Manager or employee not found.")
+
+    elif choice == "6":
+        managers = load("manager.dat")
+        employees = load("employee.dat")
+        m = find(managers, input("Enter manager ID: "))
+        e = find(employees, input("Enter employee ID: "))
+        if m and e:
+            percent = float(input("Enter raise percent (example: 10): "))
+            m.give_raise(e, percent)
+            save("employee.dat", employees)
+            print("New salary: " + str(e.salary))
+        else:
+            print("Manager or employee not found.")
+
+    elif choice == "7":
+        managers = load("manager.dat")
+        employees = load("employee.dat")
+        m = find(managers, input("Enter manager ID: "))
+        e = find(employees, input("Enter employee ID: "))
+        if m and e:
+            m.check_eligibility(e)
+        else:
+            print("Manager or employee not found.")
+
+    elif choice == "0":
+        print("Goodbye!")
+        break
+
+    else:
+        print("Invalid input")
